@@ -4,7 +4,7 @@
   display: flex;
   transition: all .4s ease;
   z-index: 9999;
-  margin-right: .675rem;
+  margin: 0 .675rem;
 }
 
 .notify-icon svg {
