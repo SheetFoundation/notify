@@ -1,0 +1,41 @@
+{
+  "name": "@sheetfoundation/notify",
+  "version": "0.0.1",
+  "description": "Plugin for displaying notification popups.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && vue-tsc",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SheetFoundation/notify.git"
+  },
+  "author": "",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/SheetFoundation/notify/issues"
+  },
+  "homepage": "https://github.com/SheetFoundation/notify#readme",
+  "main": "./dist/notify.umd.csj",
+  "module": "./dist/notify.js",
+  "types": "./dist/notify.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/notify.js",
+      "require": "./dist/notify.umd.cjs"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.8.4",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.11",
+    "vite-plugin-dts": "^3.6.0",
+    "vue-tsc": "^1.8.18"
+  }
+}

@@ -1,0 +1,59 @@
+.notify-container {
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  display: flex;
+  transition: all .4s ease;
+  z-index: 9999;
+}
+
+.notify-icon svg {
+  margin-right: .5rem;
+}
+
+.notify-information {
+  background-color: rgb(224 224 227 / 1);
+  font-size: inherit;
+}
+
+.notify-success {
+  color: white;
+  background: rgb(22 101 52);
+}
+
+.notify-danger {
+  color: white;
+  background: rgb(153 27 27);
+}
+
+.notify-warning {
+  color: white;
+  background: rgb(180 83 9);
+}
+
+.notify-opening {
+  animation: notifyOpening .4s ease forwards;
+}
+
+.notify-closing {
+  animation: notifyClosing .4s ease forwards;
+}
+
+@keyframes notifyOpening {
+	0%   {
+		opacity: 0;
+    transform: translate(0px, -5px);
+	}
+	100% {
+		opacity: 1;
+    transform: translate(0px, 0);
+	}
+}
+
+@keyframes notifyClosing {
+	0%   {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
