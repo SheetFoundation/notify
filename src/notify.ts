@@ -14,15 +14,61 @@ class Notify {
       </div>`
 
   private icons: Icons = {
-    information: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+    information: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path fill="none" stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
     </svg>`,
-    danger: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+    success: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path fill="none" stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+    </svg>`,
+    warning: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+    </svg>`,
+    danger: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
     </svg>`
   }
+
+  private showIcon = true
+  private duration = 5000
+
+  setDefaultSettings(settings: {
+      showIcon?: boolean,
+      duration?: number,
+      popupMargin?: number,
+      topStartingPoint?: number,
+      template?: string
+    }): any {
+
+    if (typeof settings.showIcon !== "undefined") this.showIcon = settings.showIcon
+    if (settings.duration) this.duration = settings.duration
+    if (settings.topStartingPoint) this.topStartingPoint = settings.topStartingPoint
+    if (settings.template) this.template = settings.template
+  }
+
+  getIcon(type: string) {
+    return this.icons[type]
+  }
+
+  setIcon(type: string, template: string) {
+    this.icons[type] = template
+  }
+
+  getIcons() {
+    return this.icons
+  }
+
+  setIcons(icons: Icons) {
+    this.icons = icons
+  }
 	
-	show (options: { [index: string]: string }) : void 
+	show (options: {
+    title?: string,
+    message?: string,
+    type?: string,
+    log?: string,
+    showIcon?: boolean,
+    duration?: number
+  }) : void 
 	{
 		const templateElem = document.createElement('template')
 		const html = this.template.trim() // Never return a text node of whitespace as the result
@@ -35,12 +81,13 @@ class Notify {
 		const title = options.title ?? ''
 		const message = options.message ?? ''
 		const type = options.type ?? 'information'
-		const duration = options.duration ? parseInt(options.duration) : 5000
+		const showIcon = options.showIcon ?? this.showIcon
+		const duration = options.duration ?? this.duration
 
     if (options.log) console.log(options.log)
 
     const iconElem = template.querySelector('.notify-icon')
-    if (iconElem) iconElem.innerHTML = icon
+    if (iconElem && showIcon) iconElem.innerHTML = icon
 
 		const titleElem = template.querySelector('[data-notify=title]')
     if (titleElem) titleElem.innerHTML = title
