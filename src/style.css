@@ -1,14 +1,16 @@
 .notify-container {
+  position: fixed;
+  right: 0;
   padding: 0.75rem;
   border-radius: 0.375rem;
   display: flex;
+  gap: .5rem;
   transition: all .4s ease;
   z-index: 9999;
   margin: 0 .675rem;
 }
 
-.notify-icon svg {
-  margin-right: .5rem;
+.notify-icon {
 }
 
 .notify-information {

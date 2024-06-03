@@ -1,6 +1,6 @@
 {
   "name": "@sheetfoundation/notify",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Plugin for displaying notification popups.",
   "type": "module",
   "scripts": {
@@ -32,9 +32,9 @@
     "dist"
   ],
   "devDependencies": {
-    "@types/node": "^20.12.12",
+    "@types/node": "^20.14.0",
     "typescript": "^5.4.5",
-    "vite": "^5.2.11",
+    "vite": "^5.2.12",
     "vite-plugin-dts": "^3.9.1",
     "vue-tsc": "^2.0.19"
   }

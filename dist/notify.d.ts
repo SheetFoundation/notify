@@ -25,6 +25,7 @@ declare class Notify {
         message?: string;
         type?: string;
         log?: string;
+        icon?: string;
         showIcon?: boolean;
         duration?: number;
     }): void;
