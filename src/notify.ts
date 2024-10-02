@@ -1,6 +1,13 @@
 import './style.css'
 
-export type Icons = { [key in string]: string }
+export enum NotifyType {
+  information = 'information',
+  success = 'success',
+  warning = 'warning',
+  danger = 'danger',
+}
+
+export type NotifyIcons = { [key in NotifyType]: string }
 
 class Notify {
   private popupMargin = 16
@@ -13,7 +20,7 @@ class Notify {
         </div>
       </div>`
 
-  private icons: Icons = {
+  private icons: NotifyIcons = {
     information: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; position: relative; top: .15rem">
       <path fill="none" stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
     </svg>`,
@@ -45,11 +52,11 @@ class Notify {
     if (settings.template) this.template = settings.template
   }
 
-  getIcon(type: string) {
+  getIcon(type: NotifyType) {
     return this.icons[type]
   }
 
-  setIcon(type: string, template: string) {
+  setIcon(type: NotifyType, template: string) {
     this.icons[type] = template
   }
 
@@ -57,14 +64,14 @@ class Notify {
     return this.icons
   }
 
-  setIcons(icons: Icons) {
+  setIcons(icons: NotifyIcons) {
     this.icons = icons
   }
 	
 	show (options: {
     title?: string,
     message?: string,
-    type?: string,
+    type?: NotifyType,
     log?: string,
     icon?: string,
     showIcon?: boolean,
