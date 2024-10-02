@@ -1,18 +1,19 @@
 var S = Object.defineProperty;
-var I = (i, t, e) => t in i ? S(i, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : i[t] = e;
-var n = (i, t, e) => (I(i, typeof t != "symbol" ? t + "" : t, e), e);
-class x {
+var I = (e, t, o) => t in e ? S(e, t, { enumerable: !0, configurable: !0, writable: !0, value: o }) : e[t] = o;
+var i = (e, t, o) => (I(e, typeof t != "symbol" ? t + "" : t, o), o);
+var x = /* @__PURE__ */ ((e) => (e.information = "information", e.success = "success", e.warning = "warning", e.danger = "danger", e))(x || {});
+class L {
   constructor() {
-    n(this, "popupMargin", 16);
-    n(this, "topStartingPoint", 0);
-    n(this, "template", `<div data-notify="container" class="notify-container notify-opening">
+    i(this, "popupMargin", 16);
+    i(this, "topStartingPoint", 0);
+    i(this, "template", `<div data-notify="container" class="notify-container notify-opening">
         <span class="notify-icon"></span>
         <div data-notify="title-message-block">
           <span data-notify="title"></span>
           <span data-notify="message"></span>
         </div>
       </div>`);
-    n(this, "icons", {
+    i(this, "icons", {
       information: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; position: relative; top: .15rem">
       <path fill="none" stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
     </svg>`,
@@ -26,8 +27,8 @@ class x {
       <path fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
     </svg>`
     });
-    n(this, "showIcon", !0);
-    n(this, "duration", 5e3);
+    i(this, "showIcon", !0);
+    i(this, "duration", 5e3);
   }
   setDefaultSettings(t) {
     typeof t.showIcon < "u" && (this.showIcon = t.showIcon), t.duration && (this.duration = t.duration), t.topStartingPoint && (this.topStartingPoint = t.topStartingPoint), t.template && (this.template = t.template);
@@ -35,8 +36,8 @@ class x {
   getIcon(t) {
     return this.icons[t];
   }
-  setIcon(t, e) {
-    this.icons[t] = e;
+  setIcon(t, o) {
+    this.icons[t] = o;
   }
   getIcons() {
     return this.icons;
@@ -45,29 +46,29 @@ class x {
     this.icons = t;
   }
   show(t) {
-    const e = document.createElement("template"), m = this.template.trim();
-    e.innerHTML = m;
-    const o = e.content.firstChild;
-    if (!o)
+    const o = document.createElement("template"), m = this.template.trim();
+    o.innerHTML = m;
+    const n = o.content.firstChild;
+    if (!n)
       return;
-    const g = t.icon ?? (t.type && this.icons[t.type] ? this.icons[t.type] : ""), u = t.title ?? "", f = t.message ?? "", w = t.type ?? "information", y = t.showIcon ?? this.showIcon, v = t.duration ?? this.duration;
+    const g = t.icon ?? (t.type && this.icons[t.type] ? this.icons[t.type] : ""), u = t.title ?? "", w = t.message ?? "", f = t.type ?? "information", v = t.showIcon ?? this.showIcon, y = t.duration ?? this.duration;
     t.log && console.log(t.log);
-    const a = o.querySelector(".notify-icon");
-    a && y && (a.innerHTML = g);
-    const c = o.querySelector("[data-notify=title]");
+    const a = n.querySelector(".notify-icon");
+    a && v && (a.innerHTML = g);
+    const c = n.querySelector("[data-notify=title]");
     c && (c.innerHTML = u);
-    const l = o.querySelector("[data-notify=message]");
-    l && (l.innerHTML = f);
-    const p = document.querySelector("body");
-    if (!p)
+    const l = n.querySelector("[data-notify=message]");
+    l && (l.innerHTML = w);
+    const d = document.querySelector("body");
+    if (!d)
       return;
-    o.id = "notify-" + (Math.random() + 1).toString(36).substring(7), o.classList.add("notify-" + w);
+    n.id = "notify-" + (Math.random() + 1).toString(36).substring(7), n.classList.add("notify-" + f);
     let k = this.popupMargin + this.topStartingPoint;
-    o.style.top = k + "px", p.append(o);
-    const s = document.getElementById(o.id);
+    n.style.top = k + "px", d.append(n);
+    const s = document.getElementById(n.id);
     if (!s)
       return;
-    const d = s.getBoundingClientRect(), r = d.bottom - d.top + this.popupMargin;
+    const p = s.getBoundingClientRect(), r = p.bottom - p.top + this.popupMargin;
     this.topStartingPoint += r, setTimeout(() => {
       s.classList.remove("notify-opening"), s.classList.add("notify-closing"), setTimeout(() => {
         s.remove(), this.topStartingPoint -= r, document.querySelectorAll(".notify-container").forEach((h) => {
@@ -75,10 +76,11 @@ class x {
           h.style.top = M.top - r + "px";
         });
       }, 500);
-    }, v);
+    }, y);
   }
 }
-const T = new x();
+const C = new L();
 export {
-  T as notify
+  x as NotifyType,
+  C as notify
 };

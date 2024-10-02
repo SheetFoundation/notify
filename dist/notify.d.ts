@@ -1,6 +1,12 @@
 
-export type Icons = {
-    [key in string]: string;
+export declare enum NotifyType {
+    information = "information",
+    success = "success",
+    warning = "warning",
+    danger = "danger"
+}
+export type NotifyIcons = {
+    [key in NotifyType]: string;
 };
 declare class Notify {
     private popupMargin;
@@ -16,14 +22,14 @@ declare class Notify {
         topStartingPoint?: number;
         template?: string;
     }): any;
-    getIcon(type: string): string;
-    setIcon(type: string, template: string): void;
-    getIcons(): Icons;
-    setIcons(icons: Icons): void;
+    getIcon(type: NotifyType): string;
+    setIcon(type: NotifyType, template: string): void;
+    getIcons(): NotifyIcons;
+    setIcons(icons: NotifyIcons): void;
     show(options: {
         title?: string;
         message?: string;
-        type?: string;
+        type?: NotifyType;
         log?: string;
         icon?: string;
         showIcon?: boolean;
