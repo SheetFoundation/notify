@@ -8,6 +8,7 @@
   transition: all .4s ease;
   z-index: 9999;
   margin: 0 .675rem;
+  overflow-wrap: anywhere;
 }
 
 .notify-icon {
