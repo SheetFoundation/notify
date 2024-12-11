@@ -1,4 +1,3 @@
-
 export declare enum NotifyType {
     information = "information",
     success = "success",

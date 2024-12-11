@@ -1,6 +1,6 @@
 var S = Object.defineProperty;
 var I = (e, t, o) => t in e ? S(e, t, { enumerable: !0, configurable: !0, writable: !0, value: o }) : e[t] = o;
-var i = (e, t, o) => (I(e, typeof t != "symbol" ? t + "" : t, o), o);
+var i = (e, t, o) => I(e, typeof t != "symbol" ? t + "" : t, o);
 var x = /* @__PURE__ */ ((e) => (e.information = "information", e.success = "success", e.warning = "warning", e.danger = "danger", e))(x || {});
 class L {
   constructor() {
@@ -49,8 +49,7 @@ class L {
     const o = document.createElement("template"), m = this.template.trim();
     o.innerHTML = m;
     const n = o.content.firstChild;
-    if (!n)
-      return;
+    if (!n) return;
     const g = t.icon ?? (t.type && this.icons[t.type] ? this.icons[t.type] : ""), u = t.title ?? "", w = t.message ?? "", f = t.type ?? "information", v = t.showIcon ?? this.showIcon, y = t.duration ?? this.duration;
     t.log && console.log(t.log);
     const a = n.querySelector(".notify-icon");
@@ -60,14 +59,12 @@ class L {
     const l = n.querySelector("[data-notify=message]");
     l && (l.innerHTML = w);
     const d = document.querySelector("body");
-    if (!d)
-      return;
+    if (!d) return;
     n.id = "notify-" + (Math.random() + 1).toString(36).substring(7), n.classList.add("notify-" + f);
     let k = this.popupMargin + this.topStartingPoint;
     n.style.top = k + "px", d.append(n);
     const s = document.getElementById(n.id);
-    if (!s)
-      return;
+    if (!s) return;
     const p = s.getBoundingClientRect(), r = p.bottom - p.top + this.popupMargin;
     this.topStartingPoint += r, setTimeout(() => {
       s.classList.remove("notify-opening"), s.classList.add("notify-closing"), setTimeout(() => {
