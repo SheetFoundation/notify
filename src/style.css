@@ -12,6 +12,13 @@
 }
 
 .notify-icon {
+  display: flex;
+  align-items: center;
+}
+
+[data-notify=title] {
+  display: block;
+  font-weight: 500;
 }
 
 .notify-information {
@@ -33,6 +40,15 @@
 .notify-warning {
   color: white;
   background: rgb(180 83 9);
+}
+
+.notify-close {
+  width: .8rem;
+}
+
+.notify-close:hover {
+  opacity: .8;
+  transition: opacity .2s ease;
 }
 
 .notify-opening {

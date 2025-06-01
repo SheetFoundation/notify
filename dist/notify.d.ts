@@ -12,10 +12,14 @@ declare class Notify {
     private topStartingPoint;
     private template;
     private icons;
+    private closeIcon;
     private showIcon;
+    private showCloseButton;
     private duration;
+    private notificationsCount;
     setDefaultSettings(settings: {
         showIcon?: boolean;
+        showCloseButton?: boolean;
         duration?: number;
         popupMargin?: number;
         topStartingPoint?: number;
@@ -25,6 +29,8 @@ declare class Notify {
     setIcon(type: NotifyType, template: string): void;
     getIcons(): NotifyIcons;
     setIcons(icons: NotifyIcons): void;
+    getCloseIcon(): string;
+    setCloseIcon(template: string): void;
     show(options: {
         title?: string;
         message?: string;
@@ -33,7 +39,9 @@ declare class Notify {
         icon?: string;
         showIcon?: boolean;
         duration?: number;
+        showCloseButton?: boolean;
     }): void;
+    private hide;
 }
 export declare const notify: Notify;
 export {};
